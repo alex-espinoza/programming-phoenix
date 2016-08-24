@@ -4,8 +4,8 @@ defmodule Rumbl.VideoController do
 
   #plug :scrub_params, "video" when action in [:create, :update]
 
-  def index(conn, _params) do
-    videos = Repo.all(Video)
+  def index(conn, _params, user) do
+    videos = Repo.all(user_videos(user))
     render(conn, "index.html", videos: videos)
   end
 
@@ -34,8 +34,8 @@ defmodule Rumbl.VideoController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    video = Repo.get!(Video, id)
+  def show(conn, %{"id" => id}, user) do
+    video = Repo.get!(user_videos(user), id)
     render(conn, "show.html", video: video)
   end
 
@@ -73,5 +73,9 @@ defmodule Rumbl.VideoController do
 
   def action(conn, _) do
     apply(__MODULE__, action_name(conn), [conn, conn.params, conn.assigns.current_user])
+  end
+
+  defp user_videos(user) do
+    assoc(user, :videos)
   end
 end
