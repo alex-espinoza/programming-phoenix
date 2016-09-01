@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/app":{"create":true,"guestpath":"/home/vagrant/app","hostpath":"/Users/alex.espinoza/Development/learning/programming-phoenix/app","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/alex.espinoza/Development/learning/programming-phoenix","disabled":false,"__vagrantfile":true}}}
